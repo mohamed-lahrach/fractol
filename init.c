@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/04 20:43:15 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/06/04 20:43:16 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 #include "minilibx-linux/mlx.h"
 #include <stdio.h>
@@ -38,11 +50,6 @@ static void	events_init(t_fractal *fractal)
 			DestroyNotify,
 			StructureNotifyMask,
 			close_handler,
-			fractal);
-	mlx_hook(fractal->mlx_window,
-			MotionNotify,
-			PointerMotionMask,
-			julia_track,
 			fractal);
 }
 

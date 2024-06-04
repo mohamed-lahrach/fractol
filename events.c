@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/04 20:42:44 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/06/04 20:44:01 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 #include "minilibx-linux/mlx.h"
 #include <X11/X.h>
@@ -5,11 +17,7 @@
 #include <stdlib.h>
 
 
-/*
- * ESC or i press the x🔴 in the window
- * there won't be leaks!
- * int (*f)(void *param)
-*/
+
 int	close_handler(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx_connection,
@@ -22,10 +30,6 @@ int	close_handler(t_fractal *fractal)
 }
 
 
-/*
- * Keypress prototype
- * int (*f)(int keycode, void *param)
-*/
 int	key_handler(int keysym, t_fractal *fractal)
 {
 	if (keysym == XK_Escape)
@@ -38,52 +42,27 @@ int	key_handler(int keysym, t_fractal *fractal)
 		fractal->shift_y -= (0.5 * fractal->zoom);	
 	else if (keysym == XK_Down)
 		fractal->shift_y += (0.5 * fractal->zoom);	
-	else if (keysym == XK_plus)
+	else if (keysym == XK_equal)
 		fractal->iterations_defintion += 10;
 	else if (keysym == XK_minus)	
 		fractal->iterations_defintion -= 10;
-
-	// refresh the image
 	fractal_render(fractal);
 	return 0;
 }
 
 
-
-/*
- * int (*f)(int button, int x, int y, void *param)
-*/
 int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
-	//Zoom in
 	if (button == Button5)
 	{
 		fractal->zoom *= 0.95;
 	}
-	//Zoom out
 	else if (button == Button4)
 	{
 		fractal->zoom *= 1.05;
 	}
-	// refresh
 	fractal_render(fractal);
 	return 0;
 }
 
-
-/*
- * TRACK the mouse
- * to change julia dynamically
- * int (*f)(int x, int y, void *param)
-*/
-int	julia_track(int x, int y, t_fractal *fractal)
-{
-	if (!ft_strncmp(fractal->name, "julia", 5))
-	{
-		fractal->julia_x = (map(x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
-		fractal->julia_y = (map(y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_y;
-		fractal_render(fractal);
-	}
-	return 0;
-}
 

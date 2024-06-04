@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/04 20:43:49 by mlahrach          #+#    #+#             */
+/*   Updated: 2024/06/04 20:43:50 by mlahrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 
@@ -11,14 +23,9 @@ int	ft_strncmp(char *s1, char *s2, int n)
 		++s2;
 		--n;
 	}
-	// chars are basically 1 byte int
-	// 🚨 when 0, strings are equal !! 🚨
 	return (*s1 - *s2);
 }
 
-/*
- * RECURSION
-*/
 void	putstr_fd(char *s, int fd)
 {
 	if (NULL == s || fd < 0)
@@ -30,12 +37,6 @@ void	putstr_fd(char *s, int fd)
 	}
 }
 
-/*
- * ALPHA TO DOUBLE
- * similar to atoi, but dealing with floats
- * takes the cmnd line args and
- * converts to long double (typedef ldbl)
-*/
 double	atodbl(char *s)
 {
 	long	integer_part;
