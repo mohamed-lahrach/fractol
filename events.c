@@ -30,17 +30,18 @@ int	key_handler(int keysym, t_fractal *fractal)
 	if (keysym == XK_Escape)
 		close_handler(fractal);
 	if (keysym == XK_Left)
-		fractal->shift_x += (0.5 * fractal->zoom);
+		fractal->shift_x += 0.5 * fractal->zoom;
 	else if (keysym == XK_Right)
-		fractal->shift_x -= (0.5 * fractal->zoom);
+		fractal->shift_x -= 0.5 * fractal->zoom;
 	else if (keysym == XK_Up)
-		fractal->shift_y -= (0.5 * fractal->zoom);
+		fractal->shift_y -= 0.5 * fractal->zoom;
 	else if (keysym == XK_Down)
-		fractal->shift_y += (0.5 * fractal->zoom);
+		fractal->shift_y += 0.5 * fractal->zoom;
 	else if (keysym == XK_equal)
 		fractal->iterations_defintion += 10;
 	else if (keysym == XK_minus)
 		fractal->iterations_defintion -= 10;
+
 	fractal_render(fractal);
 	return (0);
 }

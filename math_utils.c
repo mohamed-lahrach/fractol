@@ -12,13 +12,11 @@
 
 #include "fractol.h"
 
-double	map(double unscaled_num, double new_min, double new_max, double old_min,
-		double old_max)
-{
-	return ((new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min)
-		+ new_min);
-}
 
+double map(MapParams params) {
+	return ((params.new_max - params.new_min) * (params.unscaled_num - params.old_min) 
+			/ (params.old_max - params.old_min) + params.new_min);
+}
 t_complex	sum_complex(t_complex z1, t_complex z2)
 {
 	t_complex	result;
