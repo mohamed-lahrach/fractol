@@ -6,7 +6,7 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:42:55 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/06/04 20:43:02 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:15:12 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ int			key_handler(int keysym, t_fractal *fractal);
 
 int    	close_handler(t_fractal *fractal);
 int		mouse_handler(int button, int x, int y, t_fractal *fractal);
-int		julia_track(int x, int y, t_fractal *fractal);
 
 #endif

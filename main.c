@@ -6,7 +6,7 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:43:21 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/06/04 20:43:22 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:15:28 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #include "minilibx-linux/mlx.h"
 
 int	main(int ac, char **av)
-{
+{                                                        
 	t_fractal	fractal;
 
-
-	if (2 == ac && !ft_strncmp(av[1], "mandelbrot", 10)
-		|| 4 == ac && !ft_strncmp(av[1], "julia", 5))
+	if ((2 == ac && !ft_strncmp(av[1], "mandelbrot", 10)) || (4 == ac
+			&& !ft_strncmp(av[1], "julia", 5)))
 	{
 		fractal.name = av[1];
 		if (!ft_strncmp(fractal.name, "julia", 5))
