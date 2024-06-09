@@ -6,7 +6,7 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:43:21 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/06/07 17:15:28 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/06/09 19:56:45 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include "minilibx-linux/mlx.h"
 
 int	main(int ac, char **av)
-{                                                        
+{
 	t_fractal	fractal;
+	char		*message;
 
 	if ((2 == ac && !ft_strncmp(av[1], "mandelbrot", 10)) || (4 == ac
 			&& !ft_strncmp(av[1], "julia", 5)))
@@ -32,7 +33,10 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
+		message = "Usage:\n"
+			"\t\"./fractol mandelbrot\"\n"
+			"\t\"./fractol julia <v1> <v2>\"\n";
+		putstr_fd(message, STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }

@@ -6,17 +6,42 @@
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:43:34 by mlahrach          #+#    #+#             */
-/*   Updated: 2024/06/04 20:43:35 by mlahrach         ###   ########.fr       */
+/*   Updated: 2024/06/09 20:16:39 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+double	map1(double unscaled_num)
+{
+	double	new_min;
+	double	new_max;
+	double	old_min;
+	double	old_max;
 
-double map(MapParams params) {
-	return ((params.new_max - params.new_min) * (params.unscaled_num - params.old_min) 
-			/ (params.old_max - params.old_min) + params.new_min);
+	new_min = -2;
+	new_max = 2;
+	old_min = 0;
+	old_max = WIDTH;
+	return ((new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min)
+		+ new_min);
 }
+
+double	map2(double unscaled_num, int iterations)
+{
+	double	new_min;
+	double	new_max;
+	double	old_min;
+	double	old_max;
+
+	new_min = BLACK;
+	new_max = WHITE;
+	old_min = 0;
+	old_max = iterations;
+	return ((new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min)
+		+ new_min);
+}
+
 t_complex	sum_complex(t_complex z1, t_complex z2)
 {
 	t_complex	result;

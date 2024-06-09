@@ -41,7 +41,6 @@ int	key_handler(int keysym, t_fractal *fractal)
 		fractal->iterations_defintion += 10;
 	else if (keysym == XK_minus)
 		fractal->iterations_defintion -= 10;
-
 	fractal_render(fractal);
 	return (0);
 }
