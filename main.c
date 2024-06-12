@@ -13,6 +13,7 @@
 #include "fractol.h"
 #include "minilibx-linux/mlx.h"
 
+
 int	main(int ac, char **av)
 {
 	t_fractal	fractal;

@@ -36,30 +36,56 @@ void	putstr_fd(char *s, int fd)
 	}
 }
 
-double	atodbl(char *s)
-{
-	long	integer_part;
-	double	fractional_part;
-	double	pow;
-	int		sign;
+double parse_fractional_part(char *s, double *pow, int *dot_count) {
+	double fractional_part = 0;
 
-	integer_part = 0;
-	fractional_part = 0;
-	sign = +1;
-	pow = 1;
+	while (*s) {
+		if (!(*s >= '0' && *s <= '9'))
+			return 0;
+		if ('.' == *s)
+			(*dot_count)++;
+		if (*dot_count > 1)
+			return 0;
+		*pow /= 10;
+		fractional_part = fractional_part + (*s++ - 48) * *pow;
+	}
+
+	return fractional_part;
+}
+
+double parse_integer_part(char **s, int *sign) {
+	long integer_part = 0;
+
+	if ('+' == **s || '-' == **s) {
+		if ('-' == *(*s)++)
+			*sign = -*sign;
+	}
+
+	if (!(**s >= '0' && **s <= '9'))
+		return 0;
+
+	while (**s != '.' && **s) {
+		if (!(**s >= '0' && **s <= '9'))
+			return 0;
+		integer_part = (integer_part * 10) + (*(*s)++ - 48);
+	}
+
+	return integer_part;
+}
+
+double	atodbl(char *s) {
+	double	pow = 1;
+	int		sign = +1;
+	int		dot_count = 0;
+
+	if (!s || !*s)
+		return 0;
+
 	while ((*s >= 9 && *s <= 13) || 32 == *s)
 		++s;
-	while ('+' == *s || '-' == *s)
-		if ('-' == *s++)
-			sign = -sign;
-	while (*s != '.' && *s)
-		integer_part = (integer_part * 10) + (*s++ - 48);
-	if ('.' == *s)
-		++s;
-	while (*s)
-	{
-		pow /= 10;
-		fractional_part = fractional_part + (*s++ - 48) * pow;
-	}
+
+	double integer_part = parse_integer_part(&s, &sign);
+	double fractional_part = parse_fractional_part(s, &pow, &dot_count);
+
 	return ((integer_part + fractional_part) * sign);
 }
