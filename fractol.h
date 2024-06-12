@@ -16,7 +16,9 @@
 # include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <ctype.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -60,7 +62,9 @@ typedef struct s_fractal
 
 int			ft_strncmp(char *s1, char *s2, int n);
 void		putstr_fd(char *s, int fd);
-double		atodbl(char *s);
+double		atodbl(const char *s);
+int			my_isspace(char c);
+int			my_isdigit(char c);
 
 void		fractal_init(t_fractal *fractal);
 

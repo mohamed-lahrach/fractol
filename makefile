@@ -1,5 +1,5 @@
 NAME = fractol
-SRC = events.c init.c main.c math_utils.c render.c string_utils.c
+SRC = events.c init.c main.c math_utils.c render.c string_utils.c checks.c
 OBJ = $(SRC:.c=.o)
 COMPLE = cc
 FLAGS = -Wall -Wextra -Werror
